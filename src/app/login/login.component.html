@@ -1,0 +1,63 @@
+<div class="container" style="align-items: center; display: flex; justify-content: center;">
+	<mat-tab-group class="main">
+		<mat-tab label="SignUp">
+			<div class="signup">
+				<form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" name="txt" formControlName="user_name" placeholder="User name" required>
+					<span
+						*ngIf="(registerForm.controls['user_name'].touched || submitted) && registerForm.controls['user_name'].errors"
+						style="color: red; margin-left: 20%;">
+						<span *ngIf="registerForm.controls['user_name'].errors['required']">
+							User Name is required
+						</span>
+					</span>
+					<input type="email" name="email" formControlName="email" placeholder="Email" required>
+					<span
+						*ngIf="(registerForm.controls['email'].touched || submitted) && registerForm.controls['email'].errors"
+						style="color: red; margin-left: 10%;">
+						<span *ngIf="registerForm.controls['email'].errors['required']">
+							Email is required
+						</span>
+						<span *ngIf="registerForm.controls['email'].hasError('email')"
+							style="color: red; margin-left: 10%;">
+							Must be valid email
+						</span>
+					</span>
+					<input type="password" name="pswd" formControlName="password" placeholder="Password" required>
+					<span
+						*ngIf="(registerForm.controls['password'].touched || submitted) && registerForm.controls['password'].errors"
+						style="color: red; margin-left: 20%;">
+						<span *ngIf="registerForm.controls['password'].errors['required']">
+							Password is required
+						</span>
+					</span>
+					<button type="submit">Sign up</button>
+				</form>
+			</div>
+		</mat-tab>
+		<mat-tab label="Login">
+			<div class="login">
+				<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+					<input type="text" style="margin-top: 10%;" name="txt" formControlName="user_name" placeholder="User name" required>
+					<span
+						*ngIf="(loginForm.controls['user_name'].touched || submitted) && loginForm.controls['user_name'].errors"
+						style="color: red; margin-left: 20%;">
+						<span *ngIf="loginForm.controls['user_name'].errors['required']">
+							User Name is required
+						</span>
+					</span>
+					<input type="password" name="pswd" formControlName="password" placeholder="Password" required="">
+					<span
+						*ngIf="(loginForm.controls['password'].touched || submitted) && loginForm.controls['password'].errors"
+						style="color: red; margin-left: 20%;">
+						<span *ngIf="loginForm.controls['password'].errors['required']">
+							Password is required
+						</span>
+					</span>
+					<button type="submit">Login</button>
+				</form>
+			</div>
+		</mat-tab>
+	</mat-tab-group>
+</div>

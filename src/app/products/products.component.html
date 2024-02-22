@@ -1,0 +1,49 @@
+<header class="header">
+    <nav class="menu">
+        <button mat-raised-button color="primary" (click)="orderPage()">Cart |
+            <mat-icon>add_shopping_cart</mat-icon>{{cartTotal}}</button>
+        <span class="cart-total" id="productsInCart"></span>
+    </nav>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <table class="cards" *ngFor="let foodItem of fooditems">
+                <thead class="card" style="width: 18rem;">
+                    <img [src]="foodItem.img" style="width: 80%;" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ foodItem.name }}</h5>
+                        <p class="card-text">Price: &#8377;{{ foodItem.price.toFixed(2) }}</p>
+                        <button class="button" (click)="addToCart(foodItem)">Add to cart</button>
+                    </div>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-left: 40%;">
+            <table>
+                <tr>
+                    <th colspan="2">Your order</th>
+                </tr>
+                <tr *ngFor="let cartItem of cartItems">
+                    <td>{{ cartItem.name }} x {{ cartItem.quantity }}(Qty)</td>
+                    <td>${{ cartItem.price.toFixed(2) }}</td>
+                  </tr>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>{{ totalPrice.toFixed(2) }}</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>Free shipping</td>
+                </tr>
+            </table>
+        
+            <button type="button" class="button" style="width: 20%;" (click)="placeOrder()">Place Order</button>
+        </div>
+    </div>
+</div>
